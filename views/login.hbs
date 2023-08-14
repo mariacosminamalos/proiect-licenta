@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <img class="logo" src="/images/logo.jpg" alt="logo img">
+    </div>
+    {{> nav }}
+    <button class="conectare" onclick="document.getElementById('id01').style.display='block'">Conecteaza-te</button>
+  </header>
+  
+  <div id="id01" class="modal">
+    <form class="modal-content animate" action="/login" method="POST">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      </div>
+
+      <div class="containerr">
+        <div class="uname">
+          <label for="usernameInput"><b>Username</b></label>
+          <input type="text" placeholder="Enter Username" name="username" id="usernameInput" required>
+        </div>
+
+        <div class="psw">
+          <label for="passwordInput"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="password" id="passwordInput" required>
+        </div>
+
+        <button class="login" type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

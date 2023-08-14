@@ -1,0 +1,86 @@
+{
+  "submenuItems": [
+    {
+      "route": "/screens/destinatii",
+      "title": "Destinatii",
+      "countries":[
+      {
+        "name":"Grecia",
+        "cities":[
+          {
+            "name":"Santorini",
+            "route":"/screens/destinatii/Santorini"
+          },
+          {
+            "name":"Mykonos",
+            "route":"/screens/destinatii/Mykonos"
+          },
+          {
+            "name":"Corfu",
+            "route":"/screens/destinatii/Corfu"
+          }] 
+      },
+      {
+        "name":"Turcia",
+        "cities":[
+          {
+            "name":"Istanbul",
+            "route":"/screens/destinatii/Istanbul"
+          },
+          {
+            "name":"Cappadocia",
+            "route":"/screens/destinatii/Cappadocia"
+          },
+          {
+            "name":"Antalya",
+            "route":"/screens/destinatii/Antalya"
+          }] 
+      },
+      {
+        "name":"Spania",
+        "cities":[
+          {
+            "name":"Mallorca",
+            "route":"/screens/destinatii/Mallorca"
+          },
+          {
+            "name":"Barcelona",
+            "route":"/screens/destinatii/Barcelona"
+          },
+          {
+            "name":"Madrid",
+            "route":"/screens/destinatii/Madrid"
+          },
+          {
+            "name":"Ibiza",
+            "route":"/screens/destinatii/Ibiza"
+          }] 
+      },
+      {
+        "name":"Italia",
+        "cities":[
+          {
+            "name":"Roma",
+            "route":"/screens/destinatii/Roma"
+          },
+          {
+            "name":"Pisa",
+            "route":"/screens/destinatii/Pisa"
+          },
+          {
+            "name":"Rimini",
+            "route":"/screens/destinatii/Rimini"
+          }] 
+      }]
+    },
+    {
+      "route": "/screens/zboruri",
+      "title": "Zboruri"
+    },
+    {
+      "route": "/screens/oferte",
+      "title": "Oferte"
+    }
+  ]
+}
+

@@ -1,0 +1,21 @@
+{{> header}}
+{{#if flights}}
+  {{> flightsView }}
+{{else}}
+  <h1>Formular Căutare Zboruri</h1>
+  <form id="flightForm" method="post">
+    <label for="origin">Origine:</label>
+    <input type="text" id="origin" required><br>
+
+    <label for="destination">Destinație:</label>
+    <input type="text" id="destination" required><br>
+
+    <label for="departureDate">Dată plecare (YYYY-MM-DD):</label>
+    <input type="text" id="departureDate" required><br>
+
+    <button type="submit" id="searchFlights">Caută zboruri</button>
+  </form>
+  <div id="flightsResult"></div>
+  <script src="/screens/form.js"></script>
+{{/if}}
+{{> footer}}

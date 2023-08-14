@@ -1,0 +1,502 @@
+body {
+  background-color: rgb(255, 255, 255);
+  margin:0;
+  padding: 0;
+  font: 400 13px/1.333 'Source Sans Pro', sans-serif; 
+  -webkit-font-smoothing: antialiased;
+ 
+
+
+}
+
+footer {
+  
+  color: rgb(109, 109, 109);
+  
+}
+
+img {
+  display: grid;
+  
+}
+
+.wrapper {
+  display: grid;
+  padding: 20px 50px 20px 50px;
+}
+
+.strip-name {
+  width: 100%;
+  color: #000;
+}
+
+.strip-title-button {
+  color: rgb(34, 33, 33);
+  margin: 10px;
+  font-size:30px;
+  padding: 0;
+  border: none;
+  background: none;
+
+  
+}
+
+.strip-title-button:hover {
+  text-decoration: underline;
+
+}
+
+.view-all-button {
+  color: rgb(17, 15, 15);
+  margin:20px;
+  font-size:20px;
+  font-weight: bold;
+  padding-left: 40px;
+  border: none;
+  background: none; 
+  
+  
+}
+
+.view-all-button:hover {
+  text-decoration: underline;
+
+}
+
+a {
+  text-decoration: none;
+  color: rgb(175, 175, 175);
+  padding-top: 10px;
+  margin: 8px;
+  font-size: 20px;
+  
+  
+}
+
+a:hover {
+  font-weight: bold;
+  color: rgb(18, 5, 90);
+
+}
+
+ul {
+  list-style: none;
+  
+  
+}
+
+
+.nav {
+  
+  display:inline-block;
+  padding-left: 450px;
+  padding-top: 45px;
+}
+
+.conectare {
+  margin-left: 250px;
+  text-decoration: none;
+}
+
+
+.submenu {
+  
+  padding-left: 80px;
+  margin: 0;
+  margin-top: 15px;
+  padding-bottom: 100px;
+  
+}
+.submenu li { 
+  border-right: 1px solid #c4c4c4;
+  line-height: 15px;
+  display: inline-block;
+  padding: 0 15px;
+}
+
+.submenu li:last-child {
+  border:none;
+}
+
+
+
+footer {
+  text-align: center;
+  
+  
+}
+
+.logo {
+  position: absolute;
+  padding-top: 15px;
+  padding-left: 35px;
+}
+
+.slider-container {
+  cursor: default;
+  position: absolute;
+  width: 100%;
+  display: inline-block;
+  height: 230px;
+  overflow: hidden;
+  transform: translate(0%, 0%);
+  padding-bottom: 40px;
+}
+
+.inner-slider {
+ 
+  display: flex;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.content {
+  
+  box-sizing: content-box;  
+  width: 500px;
+  height: 200px;
+  display: grid;
+  grid-template-columns: 500px 100px;
+  gap: 2px;
+  
+ 
+}
+
+.content-title {
+  color: rgb(160, 157, 157);
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.description {
+  color: white;
+}
+
+.type {
+  color: rgb(119, 118, 118);
+}
+#more {
+  display: none;
+}
+#myBtn {
+  color: rgb(75, 112, 198);
+  font-size:15px;
+  border: none;
+  background: none;
+}
+
+#myBtn:hover {
+  text-decoration: underline;
+}
+
+.title {
+  color: rgb(139, 138, 138);
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.all-desc {
+  padding-top: 45%;
+  margin-left: 1cm;
+}
+
+.gradient-img {   
+  background-image:linear-gradient(to right, rgba(13, 13, 14, 0.989), rgba(5, 5, 6, 0.817)),url('/resources/demo\ copy.png');
+  width: 900px;
+  height:692px;  
+  margin-top: 18cm;
+}
+
+.strip-gallery {
+  margin: 20px 0 20px 0;
+  position: relative;
+  height: 230px;
+}
+
+.hover-desc {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(19, 19, 19, 0.044);
+  color: #6d6969;
+  font-size: 20px;
+  visibility: hidden;
+  opacity: 0;
+  
+}
+
+.img_wrap:hover .hover-desc {
+  visibility: visible;
+  opacity: 1;
+}
+
+.strip-img:hover {
+  transform: scale(1.15);
+  border-color: rgb(95, 94, 94);
+  border-style:inset;
+  border-width: 3px;
+
+}
+
+.img_wrap:hover {
+  transform: scale(1.15);
+}
+
+
+.img_wrap img {
+  
+  object-fit: cover;
+}
+
+.btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  z-index: 10px;
+  cursor: pointer;
+  color: rgb(252, 252, 252);
+  background-color: rgba(0, 0, 0, 0.644);
+  font-size: 18px;
+}
+
+.btn:active {
+  transform: scale(1.1);
+}
+
+.btn-prev {
+  top: 45%;
+  left: 2%;
+}
+
+.btn-next {
+  top: 45%;
+  right: 2%;
+}
+
+.strip {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(145, 47, 47); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #ffffff;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px;
+}
+
+.containerr {
+  padding-top: 50px;
+}
+
+.uname {
+  margin: 30px;
+}
+
+.psw {
+  margin: 30px;
+}
+
+.conectare, .creaza-cont {
+  background-color: #41c0d6;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+
+.login, .register {
+  background-color: #41c0d6;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+
+}
+
+
+.close {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Stilizare pentru câmpurile de introducere a datelor */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.close:hover,
+.close:focus {
+  
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  position: relative;
+}
+
+nav ul li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+nav ul li:hover .dropdown {
+  display: block;
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown ul li {
+  display: block;
+}
+
+.dropdown ul li a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.dropdown .cities {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+
+.dropdown ul li:hover .cities {
+  display: block;
+}
+
+
+.destination-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.strip {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.strip h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+/*
+.strip img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 10px;
+}*/
+
+.strip p {
+  margin: 5px 0;
+}
+
+.flight-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.flight-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.flight-item h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.flight-item p {
+  margin: 5px 0;
+}

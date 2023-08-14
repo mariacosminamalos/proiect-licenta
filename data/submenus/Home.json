@@ -1,0 +1,103 @@
+{
+    "stripItems": [
+      {
+        "strip-name": "Cele mai populare destinatii",
+        "viewall-route":"/viewall",
+        "shows":[{
+            "image":"/images/demo1.png",
+            "id":"Invincible",
+            "description":""
+        },
+        {
+            "image":"/images/demo2.png",
+            "id":"WynonnaEarp",
+            "description":""
+        },
+        {
+            
+            "image":"/images/demo3.png",
+            "id":"Sense8",
+            "description":""
+        },
+        {
+            
+            "image":"/images/demo4.png",
+            "id":"OrangeIsTheNewBlack",
+            "description":""
+        },
+        {
+            
+            "image":"/images/demo5.png",
+            "id":"Lostgirl",
+            "description":""
+        },
+        {
+           
+            "image":"/images/demo6.png",
+            "id":"TheCelluloidCloset",
+            "description":""
+        },
+        {
+            "show-title":"Fox & friends",
+            "image":"/images/demo7.png",
+            "id":"Fox&friends",
+            "description":""
+        }
+        ]
+      },
+      {
+        "strip-name": "Cele mai ieftine zboruri",
+        "viewall-route":"/viewall",
+        "shows":[{
+            "show-title":"One-Punch Man",
+            "image":"/images/demo8.png",
+            "id":"One-PunchMan",
+            "description":""
+        },
+        {
+            "show-title":"Suicide Squad",
+            "image":"/images/demo9.png",
+            "id":"SuicideSquad",
+            "description":""
+        },
+        {
+            "show-title":"The boys",
+            "image":"/images/demo10.png",
+            "id":"TheBoys",
+            "description":""
+        },
+        {
+            "show-title":"Invincible",
+            "image":"/images/demo.png",
+            "id":"Invinc",
+            "description":""
+        },
+        {
+            "show-title":"Watchmen",
+            "image":"/images/demo11.png",
+            "id":"Watchman",
+            "description":""
+        },
+        {
+            "show-title":"Sky High",
+            "image":"/images/demo12.png",
+            "id":"SkyHigh",
+            "description":""
+        },
+        {
+            "show-title":"Scott Pilgrim",
+            "image":"/images/demo13.png",
+            "id":"Scott",
+            "description":""
+        },
+        {
+            "show-title":"Lost girl",
+            "image":"/images/demo5.png",
+            "id":"LostGirl",
+            "description":""
+        }
+        ]
+      }
+    ]
+  }
+  

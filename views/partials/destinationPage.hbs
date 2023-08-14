@@ -1,0 +1,13 @@
+<ul class="destination-list">
+  {{#each destinations}}
+    <li class="strip-name">
+      <div class="strip">
+        <h2>{{name}}</h2>
+        <img src="{{image_url}}" alt="{{name}}" />
+        <p>Region: {{region}}</p>
+        <p>Country: {{country}}</p>
+        <p>Number of Hotels: {{nr_hotels}}</p>
+      </div>
+    </li>
+  {{/each}}
+</ul>

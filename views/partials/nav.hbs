@@ -1,0 +1,23 @@
+<nav class="nav">
+  <ul class="submenu">
+    {{#each submenus}}
+       <li>
+        <a href="{{this.route}}">{{this.title}}</a>
+        <div class="dropdown">
+          <ul class="countries">
+            {{#each this.countries}}
+              <li>
+                <a href="#">{{this.name}}</a>
+                <ul class="cities">
+                  {{#each this.cities}}
+                    <li><a href="{{this.route}}">{{this.name}}</a></li>
+                  {{/each}}
+                </ul>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+</nav>
