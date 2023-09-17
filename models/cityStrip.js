@@ -23,15 +23,11 @@ async function searchLocations(city) {
 
       const data = JSON.parse(body);
       const locations = data.map((item) => ({
-         name: item.name,
+        name: item.name,
         image_url: item.image_url,
         region: item.region,
         country: item.country,
-        nr_hotels: item.nr_hotels,
-        timezone: item.timezone,
-        dest_type: item.dest_type,
-        latitude: item.latitude,
-        longitude: item.longitude
+        nr_hotels: item.nr_hotels
       }));
 
       resolve(locations);

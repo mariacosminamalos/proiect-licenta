@@ -1,3 +1,31 @@
+{{> login}}
+
+{{#if isLoggedIn}}
+  <div class="user-status">
+    Conectat. Bine ai venit in cont!
+  </div>
+{{/if}}
+
+<div class="error-message">
+  {{#if errorMessage}}
+    {{errorMessage}}
+  {{/if}}
+</div>
+
+{{#if registrationSuccess}}
+  <div class="registration-success-message">
+    Înregistrare reușită! Vă puteți conecta acum.
+  </div>
+{{/if}}
+
 {{> header}}
+
+<div id="chat-container">
+  <button id="chat-toggle-button">💬</button>
+  <iframe id="chat-iframe" width="350" height="430" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/dd1735cd-6155-4fc7-9c19-7067bf8e0f4b" style="display: none;"></iframe>
+  <script src="/js/chat.js"></script>
+</div>
+
 {{> mainPage }}
 {{> footer}}
+

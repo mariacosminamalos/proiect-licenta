@@ -1,15 +1,12 @@
-<a class="strip-title-button" href="{{this.viewall-route}}" > {{this.strip-name}}</a>
-<a class="view-all-button" href="{{this.viewall-route}}"> View All</a>
+<a class="strip-title-button"> {{this.strip-name}}</a>
 <div class="strip-gallery">
     <div class="slider-container" id="stripId">
         <div class="inner-slider">
             {{#each shows}}
-                <a href="/content/{{this.id}}">
-                    <div class="img_wrap" id="shows">
-                        <img class="strip-img" src="{{this.image}}" />
-                        <div class="hover-desc">{{this.show-title}}</div>
-                    </div>
-                </a>
+                <div class="img_wrap" id="shows">
+                    <img class="strip-img" src="{{this.image}}" />
+                    <div class="hover-desc">{{this.description}}</div>
+                </div>
             {{/each}}
         </div> 
         <div id="btnId">
@@ -24,4 +21,3 @@
 <script type="text/javascript">
     createCarousel('#' + getFormattedStripId('{{this.strip-name}}'));                
 </script>
-<script type="text/javascript" src="/apitest.js"></script>

@@ -1,16 +1,16 @@
 <nav class="nav">
   <ul class="submenu">
     {{#each submenus}}
-       <li>
-        <a href="{{this.route}}">{{this.title}}</a>
+      <li class="nav-item">
+        <a href="{{this.route}}" class="dropdown-trigger">{{this.title}}</a>
         <div class="dropdown">
           <ul class="countries">
             {{#each this.countries}}
               <li>
-                <a href="#">{{this.name}}</a>
+                <a class="tari" href="{{this.route}}">{{this.name}}</a>
                 <ul class="cities">
                   {{#each this.cities}}
-                    <li><a href="{{this.route}}">{{this.name}}</a></li>
+                    <li><a class="orase" href="{{this.route}}">{{this.name}}</a></li>
                   {{/each}}
                 </ul>
               </li>

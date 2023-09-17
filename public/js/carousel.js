@@ -11,7 +11,6 @@ function createCarousel(sliderContainerId){
     let x;
 
 
-
     sliderContainer.addEventListener("mousedown", (e) => {
         pressed = true;
         startX = e.offsetX - innerSlider.offsetLeft;
@@ -88,7 +87,6 @@ function getFormattedStripId(stripName){
     sliderContainerElement.id = stripName.replaceAll(/\s/g, '');
     return sliderContainerElement.id;
 }
-
 
 
 

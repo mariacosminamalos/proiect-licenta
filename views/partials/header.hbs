@@ -1,60 +1,14 @@
-<header>
-  <div><img  class="logo" src="/images/logo.jpg" alt="logo img" ></div>
-  {{> nav }}
- 
-  <button class="conectare" onclick="document.getElementById('id01').style.display='block'">Conecteaza-te</button>
-
-<div id="id01" class="modal">
-  <form class="modal-content animate" action="/login" method="POST">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+<link href="https://fonts.cdnfonts.com/css/elegant-2" rel="stylesheet">
+<header class="main-header">
+  <div class="hero">
+    <div class="background-image"></div>
+    <div class="hero-text">
+      <p class="bigtext">AICI INCEPE VACANTA TA</p>
+      <p>Alege destinatiile favorite si bucura-te de vacanta ce te asteapta</p> 
     </div>
-
-    <div class="containerr">
-      <div class="uname">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" id="usernameInput" required>
-      </div>
-
-      <div class="psw">
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" id="passwordInput" required>
-      </div>
-
-      <button class="login" type="submit">Login</button>
+    {{> header-bar}}
     </div>
-  </form>
+  </div>
 </div>
-
-
-<button class="creaza-cont" onclick="document.getElementById('id02').style.display='block'">Creează cont</button>
-
-<div id="id02" class="modal">
-  <form class="modal-content animate" action="/register" method="POST">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-    </div>
-
-    <div class="containerr">
-      <div class="uname">
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" id="usernameInput" required>
-      </div>
-
-      <div class="psw">
-        <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" id="passwordInput" maxlength="50" required>
-      </div>
-
-      <div class="psw">
-        <label for="confirm-password"><b>Confirm Password</b></label>
-        <input type="password" placeholder="Confirm Password" name="confirm_password" id="confirmPasswordInput" maxlength="50" required>
-      </div>
-
-      <button class="register" type="submit">Register</button>
-    </div>
-  </form>
-</div>
-
 
 </header>

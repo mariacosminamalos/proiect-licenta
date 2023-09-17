@@ -2,7 +2,7 @@
   "submenuItems": [
     {
       "route": "/screens/destinatii",
-      "title": "Destinatii",
+      "title": "DESTINATII",
       "countries":[
       {
         "name":"Grecia",
@@ -70,16 +70,88 @@
           {
             "name":"Rimini",
             "route":"/screens/destinatii/Rimini"
+          },
+          {
+            "name":"Sardinia",
+            "route":"/screens/destinatii/Sardinia"
+          }] 
+      },
+      {
+        "name":"Franta",
+        "cities":[
+          {
+            "name":"Paris",
+            "route":"/screens/destinatii/Paris"
+          },
+          {
+            "name":"Bordeaux",
+            "route":"/screens/destinatii/Bordeaux"
+          }] 
+      },
+      {
+        "name":"Olanda",
+        "cities":[
+          {
+            "name":"Amsterdam",
+            "route":"/screens/destinatii/Amsterdam"
+          },
+          {
+            "name":"Rotterdam",
+            "route":"/screens/destinatii/Rotterdam"
+          },
+          {
+            "name":"Haga",
+            "route":"/screens/destinatii/Haga"
+          }] 
+      },
+      {
+        "name":"Emiratele Arabe Unite",
+        "cities":[
+          {
+            "name":"Dubai",
+            "route":"/screens/destinatii/Dubai"
+          },
+          {
+            "name":"Abu Dhabi",
+            "route":"/screens/destinatii/AbuDhabi"
+          }] 
+      },
+      {
+        "name":"Marea Britanie",
+        "cities":[
+          {
+            "name":"London",
+            "route":"/screens/destinatii/London"
+          },
+          {
+            "name":"Oxford",
+            "route":"/screens/destinatii/Oxford"
+          },
+          {
+            "name":"Manchester",
+            "route":"/screens/destinatii/Manchester"
+          }] 
+      },
+      {
+        "name":"Cipru",
+        "cities":[
+          {
+            "name":"Larnaca",
+            "route":"/screens/destinatii/Larnaca"
+          },
+          {
+            "name":"Ayia Napa",
+            "route":"/screens/destinatii/AyiaNapa"
           }] 
       }]
     },
     {
       "route": "/screens/zboruri",
-      "title": "Zboruri"
+      "title": "ZBORURI"
     },
     {
-      "route": "/screens/oferte",
-      "title": "Oferte"
+      "route": "/screens/blog",
+      "title": "BLOG"
     }
   ]
 }
