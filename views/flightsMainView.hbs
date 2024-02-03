@@ -1,15 +1,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <div>
-  {{> header-bar}}
+{{> header-bar}}
 </div>
+
+<div class="background-image-plane" >
 
 <div class="flights-class">
   {{#if flights}}
     {{> flightsView }}
   {{else}}
-    <div class="flight-form">
-      <h1>Formular Căutare Zboruri</h1>
-      <form id="flightForm" method="post">
+  <div class="filters-and-form-container">
+  
+    <div class="flight-form" >
+      <h1>Găsește zborul potrivit ție!</h1>
+      <form id="flightForm" method="post" onsubmit="submitForm(event)">
         <label for="origin">Origine:</label>
         <input type="text" id="origin" required><br>
 
@@ -17,14 +22,53 @@
         <input type="text" id="destination" required><br>
 
         <label for="departureDate">Dată plecare:</label>
-        <input type="text" id="departureDate" required><br>
+        <input type="text" id="departureDate" required ><br>
 
+        <label for="adults">Adulți:</label>
+        <input type="number" id="adults" min="1"><br>
+
+        <label for="cabinClass">Clasa de călătorie:</label>
+        <select id="cabinClass">
+            <option value="ECONOMY" {{#if (eq travelClass "ECONOMY")}}selected{{/if}}>ECONOMY</option>
+            <option value="PREMIUM_ECONOMY" {{#if (eq travelClass "PREMIUM_ECONOMY")}}selected{{/if}}>PREMIUM_ECONOMY</option>
+            <option value="BUSINESS" {{#if (eq travelClass "BUSINESS")}}selected{{/if}}>BUSINESS</option>
+            <option value="FIRST" {{#if (eq travelClass "FIRST")}}selected{{/if}}>FIRST</option>
+        </select><br>
+
+ 
         <button type="submit" id="searchFlights">Caută zboruri</button>
       </form>
     </div>
-    <div id="flightsResult"></div>
+    
+  </div>
+  <div class="resultsContainer"> 
+      <div id="filters-container" class="filters-container">
+        <div id="filterButton"></div> 
+      </div>
+      <div class="horizontal-container">
+        <div id="recommandationButton"  class="recommendation-buttons-container"></div>
+        <div id="flightsResult" class="results-container"></div>
+      </div>
+  </div>
+    <script type=models src="../models/searchFlights.js"></script>
     <script src="/screens/form.js"></script>
+    <script>
+  function submitForm(event) {
+  event.preventDefault();
+
+  setTimeout(() => {
+  const firstFlight = document.querySelector('.flight');
+  const flightPosition = firstFlight.offsetTop;
+
+  window.scrollTo({
+    top: flightPosition,
+    behavior: 'smooth',
+  });
+  }, 2500);
+  }
+  </script>
   {{/if}}
+  </div>
 </div>
 
 <div>

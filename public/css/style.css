@@ -1,18 +1,13 @@
 body {
   background-color: rgb(255, 255, 255);
   font: 400 13px/1.333 'Source Sans Pro', sans-serif; 
-  -webkit-font-smoothing: antialiased;
   width:100%;
   height: 100vh;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
 }
-.hero {
-  position: relative;
-  display: flex;
-  height: 100vh; 
-}
+
 
 .background-image {
   position: absolute;
@@ -23,14 +18,6 @@ body {
   background: url('/images/background-image.jpg') center/cover no-repeat;
   
 }
-
-/*
-.hero-text {
-  text-align: center;
-  font-size: 24px;
-  display:block
-}
-*/
 
 .home-title span{
   position: relative;
@@ -63,25 +50,12 @@ body {
   transform: translateX(0);
 }
 
-.home-title span:nth-of-type(1)::before,
-.home-title span:nth-of-type(1)::after{
-  animation-delay: 1s;
+.main {
+  position: relative;
+  display: flex;
+  height: 100vh; 
 }
 
-.home-title span:nth-of-type(2)::before,
-.home-title span:nth-of-type(2)::after{
-  animation-delay: 1.5s;
-}
-
-@keyframes a-ltr-after{
-  0% {transform: translateX(-100%)}
-  100% {transform: translateX(101%)}
-}
-
-@keyframes a-ltr-before{
-  0% {transform: translateX(0)}
-  100% {transform: translateX(200%)}
-}
 
 .footer {
   background: rgba(107, 107, 107, 0.5);
@@ -104,10 +78,7 @@ img {
   padding: 20px 50px 20px 50px;
 }
 
-.strip-name {
-  width: 100%;
-  color: #000;
-}
+
 
 .strip-title-button {
   color: rgb(34, 33, 33);
@@ -150,6 +121,55 @@ img {
   
   
 }
+
+
+.destination-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+
+.destination-item {
+  width: 35%; 
+  padding-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  background-color: rgba(251, 251, 252, 0.466); 
+}
+
+
+.destination-details {
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.destination-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  
+}
+
+
+.destination-info {
+  font-size: 14px;
+  color: #555;
+}
+
+.destination-details h2 {
+  margin: 0;
+  color: #333;
+}
+
 
 .tari, .orase{
   color: rgb(44, 43, 43);
@@ -227,11 +247,11 @@ ul {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Asigură că header-ul este deasupra conținutului */
+  z-index: 1000; 
 }
 
 .header-content {
-  background-color: rgba(82, 79, 79, 0.6); /* Fundal semitransparent */
+  background-color: rgba(82, 79, 79, 0.6); 
  
   display: flex;
   position: fixed;
@@ -239,17 +259,6 @@ ul {
   justify-content: space-between;
   height: 2cm;
   width: 100%;
-}
-
-.content {
- /*
-  box-sizing: content-box;  
-  width: max-content;
-  height: 200px;
-  gap: 30px;
-  display: flex;
-  justify-content: space-between; 
-  padding: 0 20px;*/ 
 }
 
 
@@ -278,7 +287,7 @@ ul {
 
 }
 
-.hero-text {
+.main-text {
   position: absolute;
   color: #424141;
   font-family: 'ELEGANT', sans-serif;
@@ -318,8 +327,6 @@ ul {
 
 
 
-
-
 .btn {
   position: absolute;
   width: 40px;
@@ -352,42 +359,21 @@ ul {
   width: 100%;
   overflow: hidden;
 }
-.stripd {
-  width: 100%;
-  overflow: hidden;
-  border: 1px solid #ccc;
-  display: inline-block;
-  position: relative;
-  display: flex;
- 
-}
 
 
-.info {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-}
-
-.stripd img {
-  margin-left: 1cm;
-  margin-right: 1cm;
-  padding: 5px;
-}
-
-/* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none; 
+  position: fixed; 
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(145, 47, 47); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(145, 47, 47); 
+  background-color: rgba(0,0,0,0.4); 
 }
 
-/* Modal Content/Box */
 
 .uname {
   margin: 30px;
@@ -429,7 +415,7 @@ ul {
   cursor: pointer;
 }
 
-/* Stilizare pentru câmpurile de introducere a datelor */
+
 input[type="text"],
 input[type="password"] {
   width: 100%;
@@ -446,30 +432,6 @@ input[type="password"] {
   cursor: pointer;
 }
 
-/* Add Zoom Animation */
-.animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
-}
-
-@-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)} 
-  to {-webkit-transform: scale(1)}
-}
-
-@keyframes animatezoom {
-  from {transform: scale(0)} 
-  to {transform: scale(1)}
-}
-
-@keyframes modalopen {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 nav ul {
   list-style: none;
@@ -530,9 +492,7 @@ nav ul li:hover .dropdown {
 
 
 .destination-list {
-  position: absolute;
-  list-style-type: none;
-  margin-top: 5cm;
+  padding-top: 4cm;
   justify-content: center;
   width: 90%;
 }
@@ -562,14 +522,41 @@ nav ul li:hover .dropdown {
   text-align: center;
 }
 
-/* Stiluri pentru flight-form */
-.flight-form {
-  background-color: #f5f5f5;
-  border-radius: 5px;
-  padding: 20px;
-  
+.background-image-plane {
+  background-image: url('/images/plane.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
   
 }
+
+.background-image-dest {
+  background-image: url('/images/destImage.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+  
+}
+
+.hiddenc {
+  display: none;
+}
+
+.flight-form {
+  background-color: rgba(71, 89, 146, 0.466); 
+  padding: 10px;
+  margin-left: 35%;
+  margin-top: 10%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 30%;  
+  box-sizing: border-box;
+}
+
 .flight {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: large;
@@ -579,13 +566,10 @@ nav ul li:hover .dropdown {
 
 .flight-form h1 {
   font-size: 24px;
-  margin-top: 5cm;
   
 }
 
-.flight-form label {
-  display: block;
-}
+
 
 .flight-form input {
   width: 100%;
@@ -601,6 +585,10 @@ nav ul li:hover .dropdown {
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #2980b9;
 }
 
 .flight-form button:hover {
@@ -630,29 +618,285 @@ nav ul li:hover .dropdown {
   margin: 5px 0;
 }
 
+.filters-and-form-container {
+  display: flex;
+  justify-content: space-between;
+}
 
-@media (max-width: 768px) {
+
+
+.filters-container {
+  width: 25%;
+  padding: 10px;
+  box-sizing: border-box;
+ 
+}
+
+.horizontal-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1cm;
+  width: max-content;
+}
+
+.resultsContainer {
+  display: flex;
+}
+
+
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px; 
+}
+
+.filter-item {
+  margin-bottom: 10px;
+}
+
+
+#filters {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #7d8cbe8c;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filters-container {
+  width: 25%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 700px) {
   .content {
     padding: 10px;
   }
 }
+
+.recommendation-buttons-container {
+  position: relative;
+  width: 840px;
+  height: 70px;
+  background-color: #419bf500;
+  font-size: 0;
+  display: flex;  
+  box-shadow: 0 3px 6px rgba(21,1,39,0.16), 0 -1px 4px rgba(21,1,39,0.04);
+  border-radius: 8px;
+  align-items: center;
+}
+
+.recommendation-button {
+  line-height: 50px;
+  height: 100%;
+  font-size: 20px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #080808; 
+  border-right: 1px solid #2c2b2bbb;
+}
+
+
+.recommendation-button:nth-child(1):hover {
+  background-color: #6aa0d3bb;
+}
+
+.recommendation-button:nth-child(2):hover {
+  background-color: #6aa0d3bb;
+}
+
+.recommendation-button:nth-child(3):hover {
+  background-color: #6aa0d3bb;
+}
+
+.recommendation-button:nth-child(1) {
+  width: 280px;
+}
+
+.recommendation-button:nth-child(2) {
+  width: 280px;
+}
+
+.recommendation-button:nth-child(3) {
+  width: 280px;
+}
+
+.flight-container {
+  border: 2px solid #ecececda;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.origin-destination {
+  display: flex;
+  padding-left: 40%;
+  font-size: 18px;
+  gap: 10px;
+}
+
+.origin,
+.destination,
+.arrow {
+  font-size: 30px;
+  align-items: center;
+}
+
+.arrow {
+  font-size: 30px; 
+}
+
+.time1-time2 {
+  display: flex;
+  padding-left: 40%;
+  font-size: 28px;
+  gap: 40px;
+}
+
+.flight-price {
+  display: flex;
+  flex-direction: column;
+  
+}
+.flight-price,
+.cabin-class,
+.company-name {
+  font-size: 20px;
+  font-family: 'CeraPro-Bold', sans-serif;
+}
+
+.flight-price {
+  font-weight: bold;
+}
+.price-zbdir {
+  display: flex;
+}
+
+.zbdir {
+  padding-left: 65%;
+  font-family: 'Verdana', sans-serif; 
+  font-style: italic; 
+  
+}
+
+.horizontal-line {
+  width: 600px;
+  border-top: 1px solid #5c5c5cde; 
+  margin-top: 20px; 
+  margin-bottom: 10px;
+}
+
+.view-more {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-more:hover {
+  background-color: #2980b9;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 
 .top-destinatii, .cappadocia, .barcelona {
   display: flex;
   padding-top: 5cm;
 }
 
+.container {
+  max-width: 800px;
+  margin: 10px auto;
+}
 
 .desc {
-  font-family: 'georgia';
+  font-family:'Courier New', Courier, monospace;
   font-size: 18px;
-  width: 15cm;
+  width: 15cm;margin-top: 2cm;
+  font-weight: bolder;
 }
 
 .titlu-articol {
-
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
 }
 
+.blog {
+  padding: 2cm;
+}
 
 #chat-container {
   position: fixed;
@@ -680,7 +924,7 @@ nav ul li:hover .dropdown {
   align-items: center;
   justify-content: center;
   padding: 50px;
-  position: relative; /* Adaugă această linie */
+  position: relative;
 }
 
 .image-container {
@@ -703,7 +947,7 @@ nav ul li:hover .dropdown {
   opacity: 0;
   transform: translateX(100%);
   transition: opacity 1s ease, transform 1.5s ease;
-  position: absolute; /* Adaugă această linie */
+  position: absolute; 
   top: 10%; 
   left: 50%; 
   width: 30%; 
@@ -741,11 +985,11 @@ nav ul li:hover .dropdown {
   color: rgb(255, 255, 255);
   padding: 5px;
   font-size: 14px;
-  opacity: 1; /* Ascunde descrierea inițial */
+  opacity: 1; 
   transition: opacity 0.3s;
 }
 
 .img_wrap:hover .hover-desc {
-  opacity: 1; /* Afișează descrierea când plasați cursorul peste imagine */
+  opacity: 1; 
 }
 

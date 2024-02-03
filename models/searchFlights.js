@@ -1,123 +1,40 @@
-/*const request = require('request');
-
-async function searchFlights(city) {
-  return new Promise((resolve, reject) => {
-    const options = {
-      method: 'GET',
-      url: 'https://travel-advisor.p.rapidapi.com/flights/create-session',
-      qs: {
-        city: city,
-        api_key: '0a2e6ed172msh612643b5b257239p16fceejsna878ce79611b'
-      },
-    };
-
-    request(options, function (error, response, body) {
-      if (error) {
-        reject(error);
-      } else {
-        const flights = JSON.parse(body);
-        console.log(flights);
-        resolve(flights);
-      }
-    });
-  });
-}
-
-module.exports = searchFlights;
-
-*/
-
-/*
-const request = require('request');
-
-const options = {
-  method: 'GET',
-  url: 'https://travel-advisor.p.rapidapi.com/flights/create-session',
-  qs: {
-    o1: 'DMK',
-    d1: 'CNX',
-    dd1: '2023-03-15',
-    currency: 'RON',
-    ta: '1',
-    c: '0'
-  },
-  headers: {
-    'X-RapidAPI-Key': '0a2e6ed172msh612643b5b257239p16fceejsna878ce79611b',
-    'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-  }
-};
-
-request(options, function (error, response, body) {
-	if (error) throw new Error(error);
-
-	const flights = JSON.parse(body);
-  console.log(flights.summary);
-  
-});
-
-*/
-/*
-const axios = require('axios');
-const { response } = require('express');
-
-
-async function getFlightsInfo(origin, destination, departureDate) {
-  try {
-    const response = await axios.get('https://travel-advisor.p.rapidapi.com/airports/search', {
-      params: {
-        o1: origin,
-        d1: destination,
-        dd1: departureDate,
-      },
-      headers: {
-        'X-RapidAPI-Key': '0a2e6ed172msh612643b5b257239p16fceejsna878ce79611b',
-        'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-      }
-    });
-
-    return response.data;
-  } catch (error) {
-    console.error('A apărut o eroare:', error);
-    throw new Error('Eroare la preluarea datelor de zbor.');
-  }
-}
-
-module.exports = getFlightsInfo;
-
-*/
 
 const axios = require('axios');
-const xml2js = require('xml2js');
 
-async function getFlightsInfo(origin, destination, departureDate) {
+async function getFlightsInfo(origin, destination, departureDate, adults, cabinClass) {
+  console.log('Parameters:', { origin, destination, departureDate, adults, cabinClass });
   try {
-    const url = `https://timetable-lookup.p.rapidapi.com/TimeTable/${origin}/${destination}/${departureDate}`;
-    
+    const url = `https://booking-com15.p.rapidapi.com/api/v1/flights/searchFlights`;
+
     const response = await axios.get(url, {
+      params: {
+        fromId: origin + '.AIRPORT',
+        toId: destination + '.AIRPORT',
+        departDate: departureDate,
+        adults: adults,
+        cabinClass: cabinClass,
+        currency_code: 'EUR'
+      },
       headers: {
         'X-RapidAPI-Key': '0a2e6ed172msh612643b5b257239p16fceejsna878ce79611b',
-        'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
+        'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
       }
     });
 
-    const xml = response.data;
+return response.data;
 
-    const parser = new xml2js.Parser();
-    
-    return new Promise((resolve, reject) => {
-      parser.parseString(xml, (err, parsedResponse) => {
-        if (err) {
-          console.error(err);
-          reject(err);
-        } else {
-          resolve(parsedResponse);
-        }
-      });
-    });
-  } catch (error) {
-    console.error('A apărut o eroare:', error);
-    throw error;
+} catch (error) {
+  if (error.response) {
+    console.error('Status code:', error.response.status);
+    console.error('Data:', error.response.data);
+  } else if (error.request) {
+    console.error('No response received');
+  } else {
+    console.error('Error:', error.message);
   }
+
+  throw new Error('Eroare la preluarea datelor de zbor.');
+}
 }
 
 module.exports = getFlightsInfo;

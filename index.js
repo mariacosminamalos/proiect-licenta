@@ -9,8 +9,10 @@ const exphbs = require('express-handlebars');
 const flash = require('express-flash');
 const cookieParser = require('cookie-parser');
 const sgMail = require('@sendgrid/mail');
-const { WebhookClient } = require('dialogflow-fulfillment'); // Asigură-te că ai importat și acest modul corect
+const { WebhookClient } = require('dialogflow-fulfillment'); 
 const cors = require('cors');
+const handlebarsHelpers = require('handlebars-helpers')();
+const path = require('path');
 
 const pool = createPool({
   host: "localhost",
@@ -34,6 +36,14 @@ app.use(bodyParser.json());
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
+});
+
+app.use((req, res, next) => {
+  const ext = path.extname(req.url);
+  if (ext === '.js') {
+    res.type('application/javascript');
+  }
+  next();
 });
 
 passport.deserializeUser((id, done) => {
@@ -85,8 +95,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  const isLoggedIn = req.isAuthenticated(); // Verifică dacă utilizatorul este autentificat
-  const registrationSuccess = req.session.registrationSuccess || false; // Inițializează cu false dacă nu există în sesiune
+  const isLoggedIn = req.isAuthenticated(); 
+  const registrationSuccess = req.session.registrationSuccess || false; 
 
   res.render("mainPageView", { layout: "index", submenus: submenus, strip: Home, registrationSuccess, isLoggedIn });
 });
@@ -109,10 +119,10 @@ app.post('/login', (req, res, next) => {
       
       req.session.isLoggedIn = true;
       req.session.username = req.body.username;
-      req.session.registrationSuccess = true; // Setează registrationSuccess doar după autentificare
+      req.session.registrationSuccess = true; 
 
-      console.log('Autentificare reușită pentru:', user.username); // Afișează un mesaj în consolă pentru debug
-      return res.redirect('/'); // Redirecționează la pagina principală în caz de succes
+      console.log('Autentificare reușită pentru:', user.username); 
+      return res.redirect('/'); 
     });
   })(req, res, next);
 });
@@ -149,14 +159,20 @@ app.post('/register', async (req, res) => {
 });
 
 
-app.engine(
-  'hbs',
-  exphbs.engine({
-    layoutsDir: __dirname + '/views/layouts',
-    extname: 'hbs',
-    defaultLayout: 'index',
-    partialsDir: __dirname + '/views/partials/',
-  }));
+const hbs = exphbs.create({
+  layoutsDir: __dirname + '/views/layouts',
+  extname: 'hbs',
+  defaultLayout: 'index',
+  partialsDir: __dirname + '/views/partials/',
+  helpers: {
+    ...handlebarsHelpers,
+    eq: function (a, b, options) {
+      return a === b ? options.fn(this) : '';
+    },
+  },
+});
+
+app.engine('hbs', hbs.engine);
 
 app.set('view engine', 'hbs');
 app.use(express.static('public', { extensions: ['css'] }));
@@ -171,11 +187,11 @@ exports.dialogflowFirebaseFulfillment = async (req, res) => {
   console.log('Email:', email);
   console.log('Intrebare:', intrebare);
 
-  sgMail.setApiKey('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'); // Înlocuiește cu cheia ta API SendGrid
+  sgMail.setApiKey('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'); 
 
   const msg = {
     to: 'mariacosminamls@gmail.com',
-    from: 'mariacosmina2810@gmail.com', // Adresa ta de e-mail
+    from: 'mariacosmina2810@gmail.com', 
     subject: 'Cerere de asistență',
     text: `Mesaj: ${intrebare}\nAdresa de email: ${email}`,
   };
@@ -185,17 +201,17 @@ exports.dialogflowFirebaseFulfillment = async (req, res) => {
     console.log(`E-mail trimis cu succes`);
     const responseText = `Mulțumim pentru informații! Am trimis următorul mesaj la adresa ${email}: '${intrebare}'. Vei primi un răspuns în curând.`;
     const fulfillmentMessages = [{ text: { text: [responseText] } }];
-    res.json({ fulfillmentMessages }); // Trimite răspunsul către Dialogflow
+    res.json({ fulfillmentMessages }); 
   } catch (error) {
     console.error('Eroare la trimiterea e-mailului:', error);
     const responseText = 'A apărut o eroare la trimiterea e-mailului.';
     const fulfillmentMessages = [{ text: { text: [responseText] } }];
-    res.json({ fulfillmentMessages }); // Trimite răspunsul către Dialogflow
+    res.json({ fulfillmentMessages });
   }
 };
 
 app.use(cors());
-app.options('*', cors()); // Acesta este un handler simplu pentru metoda OPTIONS
+app.options('*', cors());
 
 app.post('/dialogflow-fulfillment', (req, res) => {
   exports.dialogflowFirebaseFulfillment(req, res);
@@ -216,14 +232,11 @@ app.get('/screens/destinatii/:page?', async (req, res) => {
   try {
     const cityName = req.params.page;
 
-    // Verificați dacă cityName este definit (nu este null sau undefined)
     if (cityName) {
-      // Dacă cityName este definit, apelați funcția searchLocations cu orașul specific
       const locations = await searchLocations(cityName);
       res.render('destinationPageView', { layout: 'index', submenus: submenus, destinations: locations });
     } else {
-      // Dacă cityName nu este definit, apelați funcția searchLocations fără un oraș specific
-      const allLocations = await searchLocations();
+       const allLocations = await searchLocations();
       res.render('destinationPageView', { layout: 'index', submenus: submenus, destinations: allLocations });
     }
   } catch (error) {
@@ -231,7 +244,7 @@ app.get('/screens/destinatii/:page?', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-const getFlightsInfo = require("./models/searchFlights");
+const getFlightsInfo = require("./models/searchFlights.js");
 
 app.get('/screens/zboruri', async (req, res) => {
  
@@ -245,14 +258,23 @@ app.get('/screens/zboruri', async (req, res) => {
 });
 
 app.post('/screens/zboruri', async (req, res) => {
-  const { origin, destination, departureDate } = req.body;
+  const { origin, destination, departureDate, adults, cabinClass } = req.body;
 
   try {
-    const parsedResponse = await getFlightsInfo(origin, destination, departureDate);
-    const flights = parsedResponse.OTA_AirDetailsRS.FlightDetails;
-    res.json({ flights }); // trimite răspunsul în format JSON
+    const parsedResponse = await getFlightsInfo(origin, destination, departureDate, adults, cabinClass);
+
+    console.log('Parsed Response:', parsedResponse.data.flightDeals); 
+
+    if (parsedResponse && parsedResponse.data && parsedResponse.data.flightOffers) {
+      const flights = parsedResponse.data;
+      res.json({ flights });
+    } else {
+      console.error('Răspunsul primit nu conține date valide pentru zboruri.');
+      res.status(500).send('Internal Server Error');
+    }
   } catch (error) {
     console.error('A apărut o eroare:', error);
+    console.error('Eroare detaliată:', error.message);
     res.status(500).send('Internal Server Error');
   }
 });
