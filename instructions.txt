@@ -1,0 +1,3 @@
+Pentru a rula pe un https: deschide ngrok si  rulam comanda ngrok 5500 si preluam adresa url generata
+Pentru a functiona trimiterea mail-ului deschidem dialogflow si in sectiunea fullfilment atasam adresa url de mai sus
+Pentru a rula programul scriem in terminal node index.js

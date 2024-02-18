@@ -4,7 +4,14 @@
   <div class="user-status">
     Conectat. Bine ai venit in cont!
   </div>
-  <div class="flight-search-form-container" data-authenticated="true"></div>
+   <div class="flight-search-form-container" data-authenticated="true"></div>
+
+  <div id="chat-container">
+    <button id="chat-toggle-button">💬</button>
+    <iframe id="chat-iframe" width="350" height="430" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/dd1735cd-6155-4fc7-9c19-7067bf8e0f4b" style="display: none;"></iframe>
+    <script src="/js/chat.js"></script>
+  </div>
+
 {{/if}}
 
 <div class="error-message">
@@ -19,14 +26,21 @@
   </div>
 {{/if}}
 
+<script>
+
+  function hideMessages() {
+  document.querySelector('.user-status').style.display = 'none';
+  document.querySelector('.registration-success-message').style.display = 'none';
+}
+
+if (document.querySelector('.user-status') || document.querySelector('.registration-success-message')) {
+  setTimeout(hideMessages, 2000);
+}
+
+
+</script>
+
 {{> header}}
-
-<div id="chat-container">
-  <button id="chat-toggle-button">💬</button>
-  <iframe id="chat-iframe" width="350" height="430" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/dd1735cd-6155-4fc7-9c19-7067bf8e0f4b" style="display: none;"></iframe>
-  <script src="/js/chat.js"></script>
-</div>
-
 {{> mainPage }}
 {{> footer}}
 

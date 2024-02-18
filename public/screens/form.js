@@ -53,7 +53,160 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+
+  function displayFlightsResults(flights) {
+    const flightsResult = document.getElementById('flightsResult');
+    
+    flightsResult.innerHTML = '';
+
+    if (flights && flights.flightOffers && Array.isArray(flights.flightOffers)) {
+      showResults = true;
+      const flightOffers = flights.flightOffers;
   
+      if (flightOffers.length === 0) {
+        flightsResult.innerHTML = '<p>Nu s-au găsit zboruri pentru aceste criterii.</p>';
+        return;
+      }
+  
+      flightOffers.forEach((flightInfo) => {
+        console.log('Flight Info:', flightInfo);
+        const flightElement = createFlightElement(flightInfo);
+        flightsResult.appendChild(flightElement); 
+      });
+    } else {
+      flightsResult.innerHTML = '<p>Nu s-au găsit zboruri pentru aceste criterii.</p>';
+    }
+  }
+
+  function createFlightElement(flightInfo) {
+    const flightElement = document.createElement('div');
+    flightElement.classList.add('flight');
+  
+    const firstSegment = flightInfo.segments[0];
+    const depAirport = firstSegment.departureAirport;
+    const arrAirport = firstSegment.arrivalAirport;
+    const depTime = (firstSegment.departureTime).slice(11, -3);
+    const arrTime = (firstSegment.arrivalTime).slice(11,-3);
+  
+    const departureCode = depAirport.code;
+    const departureName = depAirport.name;
+    const departureCityName = depAirport.cityName;
+    const departureCountryName = depAirport.countryName;
+  
+    const arrivalCode = arrAirport.code;
+    const arrivalName = arrAirport.name;
+    const arrivalCityName = arrAirport.cityName;
+    const arrivalCountryName = arrAirport.countryName;
+  
+    const priceBr = flightInfo.priceBreakdown;
+    const priceNanos = priceBr.total.nanos;
+    const priceDecimalPart = String(priceNanos).slice(0, 2);
+    const price = priceBr.total.units + '.' + priceDecimalPart + '' + priceBr.total.currencyCode;
+  
+    const cabinClass = firstSegment.legs[0].cabinClass;
+    const company = firstSegment.legs[0].carriersData[0];
+    const companyName = company.name;
+    
+    const flightDetailsContainer = document.createElement('div');
+    flightDetailsContainer.innerHTML = `
+      </br>
+      </br>
+      <div class="flight-container">
+        <div class="flight-details">
+          <div class="origin-destination">
+            <div class="origin">${departureCode}</div>
+            <div class="arrow">➔</div>
+            <div class="destination">${arrivalCode}</div>
+          </div>
+          <div class="time1-time2">
+            <div class="time1">${depTime}</div>
+            <div class="time2">${arrTime}</div>
+          </div>
+          <div class="horizontal-line"></div>
+          <div class="price-zbdir">
+            <div class="flight-price">${price} </div> </br>
+            <div class="zbdir"> Zbor Direct </div>
+          </div>  
+          <div class="cabin-class">Clasa:${cabinClass}</div>
+          <div class="company-name">${companyName}</div> 
+          
+        </div>
+        <button class="view-more"> Vezi mai multe info.. </button>
+        <div id="modal" class="modal">
+          <div id="modal-content" class="modal-content"></div>
+          <button id="closeModalButton" class="close" onclick="closeModal()">&times;</button>
+        </div>
+        
+      </div>
+      `;
+      flightElement.appendChild(flightDetailsContainer);
+  
+
+    const viewMoreButton = flightDetailsContainer.querySelector('.view-more');
+    viewMoreButton.addEventListener('click', function() {
+      showMoreDetails(
+        departureName,
+        departureCityName,
+        departureCountryName,
+        depTime,
+        arrivalName,
+        arrivalCityName,
+        arrivalCountryName,
+        arrTime
+      );
+    });
+
+
+    
+    return flightElement;
+  }
+
+
+
+  function showMoreDetails(
+    departureName,
+    departureCityName,
+    departureCountryName,
+    depTime,
+    arrivalName,
+    arrivalCityName,
+    arrivalCountryName,
+    arrTime
+  ) {
+    const modalContent = document.getElementById('modal-content');
+    
+    const details =
+      `Departure Name: ${departureName} </br>
+      Departure City: ${departureCityName} </br>
+      Departure Country: ${departureCountryName} </br>
+      Departure Time: ${depTime} </br>
+      </br>
+      Arrival Name: ${arrivalName} </br>
+      Arrival City: ${arrivalCityName} </br>
+      Arrival Country: ${arrivalCountryName} </br>
+      Arrival Time: ${arrTime} </br>`;
+  
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = '&times;';
+    closeButton.className = 'close';
+    closeButton.addEventListener('click', closeModal);
+    modalContent.innerHTML = details;
+    modalContent.appendChild(closeButton);
+  
+    const modal = document.getElementById('modal');
+    modal.style.display = 'block';
+  
+  }
+
+
+  
+  function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'none';
+  }
+  
+
+
 
   function displayFilters(json, flightOffers) {
     const filtersContainer = document.getElementById('filters-container');
@@ -61,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filtersContainer) {
       filtersContainer.innerHTML = `
       <div id="filters">
-      <div class="filter-group">
+       <div class="filter-group">
         <label for="stopsFilter">Filtrează după opriri:</label>
         <select id="stopsFilter">
           <option value="">Fara oprire</option>
@@ -93,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <option value="Wizz Air">Wizz Air</option>
           <option value="Qatar Airways">Qatar Airways</option>
           <option value="Tarom">Tarom</option>
+          <option value="Lot Polish Airlines">Lot Polish Airlines</option>
         </select>
       </div>
     
@@ -100,6 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
     
       `;
+
+      
     } else {
       console.error('Elementul cu id-ul "filters-container" nu a fost găsit.');
  
@@ -210,6 +366,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+ 
+
   function filterByRecommendation(recommendation, flightDeals, flightOffers) {
     
     const token = getRecommendationToken(recommendation, flightDeals);
@@ -258,157 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function showMoreDetails(
-    departureName,
-    departureCityName,
-    departureCountryName,
-    depTime,
-    arrivalName,
-    arrivalCityName,
-    arrivalCountryName,
-    arrTime
-  ) {
-    const modalContent = document.getElementById('modal-content');
-    
-    const details =
-      `Departure Name: ${departureName} </br>
-      Departure City: ${departureCityName} </br>
-      Departure Country: ${departureCountryName} </br>
-      Departure Time: ${depTime} </br>
-      </br>
-      Arrival Name: ${arrivalName} </br>
-      Arrival City: ${arrivalCityName} </br>
-      Arrival Country: ${arrivalCountryName} </br>
-      Arrival Time: ${arrTime} </br>`;
   
-    const closeButton = document.createElement('button');
-    closeButton.innerHTML = '&times;';
-    closeButton.className = 'close';
-    closeButton.addEventListener('click', closeModal);
-    modalContent.innerHTML = details;
-    modalContent.appendChild(closeButton);
-  
-    const modal = document.getElementById('modal');
-    modal.style.display = 'block';
-  
-  }
-
-
-  
-  function closeModal() {
-    const modal = document.getElementById('modal');
-    modal.style.display = 'none';
-  }
-  
-
-  function createFlightElement(flightInfo) {
-    const flightElement = document.createElement('div');
-    flightElement.classList.add('flight');
-  
-    const firstSegment = flightInfo.segments[0];
-    const depAirport = firstSegment.departureAirport;
-    const arrAirport = firstSegment.arrivalAirport;
-    const depTime = (firstSegment.departureTime).slice(11, -3);
-    const arrTime = (firstSegment.arrivalTime).slice(11,-3);
-  
-    const departureCode = depAirport.code;
-    const departureName = depAirport.name;
-    const departureCityName = depAirport.cityName;
-    const departureCountryName = depAirport.countryName;
-  
-    const arrivalCode = arrAirport.code;
-    const arrivalName = arrAirport.name;
-    const arrivalCityName = arrAirport.cityName;
-    const arrivalCountryName = arrAirport.countryName;
-  
-    const priceBr = flightInfo.priceBreakdown;
-    const priceNanos = priceBr.total.nanos;
-    const priceDecimalPart = String(priceNanos).slice(0, 2);
-    const price = priceBr.total.units + '.' + priceDecimalPart + '' + priceBr.total.currencyCode;
-  
-    const cabinClass = firstSegment.legs[0].cabinClass;
-    const company = firstSegment.legs[0].carriersData[0];
-    const companyName = company.name;
-    
-    const flightDetailsContainer = document.createElement('div');
-    flightDetailsContainer.innerHTML = `
-      </br>
-      </br>
-      <div class="flight-container">
-        <div class="flight-details">
-          <div class="origin-destination">
-            <div class="origin">${departureCode}</div>
-            <div class="arrow">➔</div>
-            <div class="destination">${arrivalCode}</div>
-          </div>
-          <div class="time1-time2">
-            <div class="time1">${depTime}</div>
-            <div class="time2">${arrTime}</div>
-          </div>
-          <div class="horizontal-line"></div>
-          <div class="price-zbdir">
-            <div class="flight-price">${price} </div> </br>
-            <div class="zbdir"> Zbor Direct </div>
-          </div>  
-          <div class="cabin-class">Clasa:${cabinClass}</div>
-          <div class="company-name">${companyName}</div> 
-          
-        </div>
-        <button class="view-more"> Vezi mai multe info.. </button>
-        <div id="modal" class="modal">
-          <div id="modal-content" class="modal-content"></div>
-          <button id="closeModalButton" class="close" onclick="closeModal()">&times;</button>
-        </div>
-        
-      </div>
-      `;
-      flightElement.appendChild(flightDetailsContainer);
-  
-
-    const viewMoreButton = flightDetailsContainer.querySelector('.view-more');
-    viewMoreButton.addEventListener('click', function() {
-      showMoreDetails(
-        departureName,
-        departureCityName,
-        departureCountryName,
-        depTime,
-        arrivalName,
-        arrivalCityName,
-        arrivalCountryName,
-        arrTime
-      );
-    });
-
-
-    
-    return flightElement;
-  }
-
-
-  
-  
-
-  function displayFlightsResults(flights) {
-    const flightsResult = document.getElementById('flightsResult');
-    
-    if (flights && flights.flightOffers && Array.isArray(flights.flightOffers)) {
-      showResults = true;
-      const flightOffers = flights.flightOffers;
-  
-      if (flightOffers.length === 0) {
-        flightsResult.innerHTML = '<p>Nu s-au găsit zboruri pentru aceste criterii.</p>';
-        return;
-      }
-  
-      flightOffers.forEach((flightInfo) => {
-        console.log('Flight Info:', flightInfo);
-        const flightElement = createFlightElement(flightInfo);
-        flightsResult.appendChild(flightElement); 
-      });
-    } else {
-      flightsResult.innerHTML = '<p>Nu s-au găsit zboruri pentru aceste criterii.</p>';
-    }
-  }
 
 
   function getCheapestOffer(flightOffers) {

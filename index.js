@@ -119,7 +119,6 @@ app.post('/login', (req, res, next) => {
       
       req.session.isLoggedIn = true;
       req.session.username = req.body.username;
-      req.session.registrationSuccess = true; 
 
       console.log('Autentificare reușită pentru:', user.username); 
       return res.redirect('/'); 
@@ -150,7 +149,7 @@ app.post('/register', async (req, res) => {
       
     req.session.registrationSuccess = true;
     res.redirect('/');
-
+    req.session.registrationSuccess = false;
     });
   }catch (error) {
     console.log(error);
@@ -158,6 +157,12 @@ app.post('/register', async (req, res) => {
   }
 });
 
+app.get('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
 
 const hbs = exphbs.create({
   layoutsDir: __dirname + '/views/layouts',

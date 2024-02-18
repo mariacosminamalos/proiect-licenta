@@ -392,7 +392,17 @@ ul {
   font-size: larger;
 }
 
-.conectare:hover, .creaza-cont:hover{
+.deconectare {
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: larger;
+  padding-top:11px;
+  margin-right: 3px;
+}
+
+.conectare:hover, .creaza-cont:hover, .deconectare:hover{
   color: #252525;
 }
 
@@ -455,6 +465,7 @@ nav ul li a {
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
+  z-index: 1000; 
 }
 
 
@@ -469,9 +480,6 @@ nav ul li:hover .dropdown {
   margin: 0;
 }
 
-.dropdown ul li {
-  display: block;
-}
 
 .dropdown ul li a {
   display: block;
@@ -821,44 +829,48 @@ input {
 }
 
 .view-more {
-  background-color: #3498db;
-  color: #fff;
+  background-color: #4c91ad;
+  color: #f0eded;
   border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .view-more:hover {
-  background-color: #2980b9;
+  background-color: #285877;
 }
 
-.modal {
+
+
+#modal {
   display: none;
   position: fixed;
-  z-index: 1;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
+  background-color: #aec1d6a2;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
   cursor: pointer;
+  color: #3a3a3ace;
 }
 
 .close:hover,
@@ -905,6 +917,7 @@ input {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  z-index: 1000; 
 }
 
 #chat-toggle-button {

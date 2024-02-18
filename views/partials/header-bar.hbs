@@ -6,8 +6,13 @@
       </div>
       
       <div class="connect-create">
+        {{#if isLoggedIn}}
+        <form action="/logout">
+          <button class="deconectare" type="submit">Deconectare</button>
+        </form>
+        {{else}}
         <button class="conectare" onclick="document.getElementById('id01').style.display='block'">Conecteaza-te</button>
-
+        {{/if}}
         <div id="id01" class="modal">
           <form class="modal-content animate" action="/login" method="POST">
             <div class="imgcontainer">

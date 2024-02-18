@@ -7,14 +7,11 @@
 <div class="background-image-plane" >
 
 <div class="flights-class">
-  {{#if flights}}
-    {{> flightsView }}
-  {{else}}
   <div class="filters-and-form-container">
   
     <div class="flight-form" >
       <h1>Găsește zborul potrivit ție!</h1>
-      <form id="flightForm" method="post" onsubmit="submitForm(event)">
+      <form id="flightForm" method="post" >
         <label for="origin">Origine:</label>
         <input type="text" id="origin" required><br>
 
@@ -36,7 +33,7 @@
         </select><br>
 
  
-        <button type="submit" id="searchFlights">Caută zboruri</button>
+        <button type="submit" id="searchFlights" onsubmit="submitForm(event)">Caută zboruri</button>
       </form>
     </div>
     
@@ -57,17 +54,17 @@
   event.preventDefault();
 
   setTimeout(() => {
-  const firstFlight = document.querySelector('.flight');
+  const firstFlight = document.querySelector('.flightsResult');
   const flightPosition = firstFlight.offsetTop;
 
   window.scrollTo({
     top: flightPosition,
     behavior: 'smooth',
   });
-  }, 2500);
+  }, 3000);
   }
   </script>
-  {{/if}}
+ 
   </div>
 </div>
 
